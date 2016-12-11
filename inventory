@@ -1,0 +1,9 @@
+[all:children]
+matrix_server
+riot.im_server
+
+[matrix_server]
+server_fqdn_or_ip
+
+[riot.im_server]
+server_fqdn_or_ip

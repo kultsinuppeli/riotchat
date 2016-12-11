@@ -1,0 +1,39 @@
+---
+# Install nginx just so the letsencrypt role passes
+- hosts: riot.im_server
+  become: yes
+  tags: certs
+  tasks:
+    - name: Install Nginx
+      apt: name=nginx state=present update_cache=yes
+
+# Install setuptools for letsencrypt
+- hosts: riot.im_server
+  become: yes
+  tags: certs
+  tasks:
+    - name: Install Setuptools
+      pip:
+        state: latest
+        name: "setuptools"
+        extra_args: --process-dependency-links
+
+- hosts: riot.im_server
+  become: yes
+  tags: certs
+  roles:
+    - role: ansible-role-letsencrypt
+      letsencrypt_domain: "{{ riot_domain }}"
+      letsencrypt_pause_services:
+        - nginx
+
+- hosts: riot.im_server
+  become: yes
+  roles:
+    - ansible-role-nginx
+
+- hosts: riot.im_server
+  become: yes
+  tags: riot
+  roles:
+    - ansible-role-riot.im

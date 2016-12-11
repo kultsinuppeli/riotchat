@@ -1,0 +1,18 @@
+---
+- name: ansible-role-synapse
+  src: https://github.com/kultsinuppeli/ansible-matrix-synapse.git
+  path: roles
+
+# Until bennojoy merges the ansible 2.0 fixes
+- name: ansible-role-nginx
+  src: https://github.com/mickengland/nginx.git
+  path: roles
+  version: dev
+
+- name: ansible-role-letsencrypt
+  src: jaywink.letsencrypt
+  path: roles
+
+- name: ansible-role-riot.im
+  src: https://github.com/kultsinuppeli/ansible-riot.im.git
+  path: roles

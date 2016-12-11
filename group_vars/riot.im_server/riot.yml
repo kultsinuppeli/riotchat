@@ -1,0 +1,4 @@
+---
+riot_hs_url: "https://{{ matrix_domain }}:8448"
+riot_is_url: "https://{{ matrix_domain }}:8448"
+riot_release: "v0.9.1"

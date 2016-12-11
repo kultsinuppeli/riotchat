@@ -1,0 +1,38 @@
+---
+- hosts: matrix_server
+  become: yes
+  tags: certs
+  roles:
+    - role: ansible-role-letsencrypt
+      letsencrypt_domain: "{{ matrix_domain }}"
+      letsencrypt_pause_services:
+        - nginx
+
+- hosts: matrix_server
+  become: yes
+  tags: matrix
+  roles:
+    - ansible-role-synapse
+
+- hosts: matrix_server
+  become: yes
+  tags: matrix
+  tasks:
+    - name: Copy cert to synapse
+      copy:
+        remote_src: yes
+        src: "/etc/letsencrypt/live/{{ matrix_domain }}/fullchain.pem"
+        dest: "/home/synapse/.synapse/{{ matrix_domain }}.tls.crt"
+        owner: "synapse"
+        group: "synapse"
+    - name: Copy key to synapse
+      copy:
+        remote_src: yes
+        src: "/etc/letsencrypt/live/{{ matrix_domain }}/privkey.pem"
+        dest: "/home/synapse/.synapse/{{ matrix_domain }}.tls.key"
+        owner: "synapse"
+        group: "synapse"
+    - name: Restart synapse
+      service:
+        name: "synapse"
+        state: "restarted"

@@ -1,0 +1,4 @@
+*.retry
+roles/*
+credentials/*
+playbooks/credentials/*

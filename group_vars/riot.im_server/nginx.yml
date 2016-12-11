@@ -1,0 +1,13 @@
+---
+nginx_http_params:
+  sendfile: "on"
+
+nginx_sites:
+ - server:
+     file_name: riot
+     listen: 443
+     location1: {name: "/", try_files: "$uri $uri/ /index.html"}
+     ssl_certificate: "/etc/letsencrypt/live/{{ riot_domain }}/cert.pem"
+     ssl_certificate_key: "/etc/letsencrypt/live/{{ riot_domain }}/privkey.pem"
+     ssl: "on"
+     root: "/var/www/html/vector-{{ riot_release }}"

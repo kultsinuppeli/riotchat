@@ -1,0 +1,4 @@
+---
+letsencrypt_force_renew: false
+letsencrypt_request_www: false
+letsencrypt_email: example@example.com
