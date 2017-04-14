@@ -15,9 +15,9 @@ Set letsencrypt_email in group_vars/all/letsencrypt.yml
 Set matrix and riot domains in group_vars/all/domains.yml
 It's recommended to use different domains for these.
 
-Run ansible-galaxy install -r requirements.yml
+Install the requirements: `ansible-galaxy install -r requirements.yml`
 
-Run the site.yml playbook.
+Finally, run the site.yml playbook: `ansible-galaxy -i inventory site.yml` (or `ansible-playbook -i inventory site.yml --ask-sudo-pass` if you are using sudo to elevate your user's privileges on the target server)
 
 ## User registration
 
