@@ -10,4 +10,4 @@ nginx_sites:
      ssl_certificate: "/etc/letsencrypt/live/{{ riot_domain }}/cert.pem"
      ssl_certificate_key: "/etc/letsencrypt/live/{{ riot_domain }}/privkey.pem"
      ssl: "on"
-     root: "/var/www/html/vector-{{ riot_release }}"
+     root: "/var/www/html/riot-{{ riot_release }}"

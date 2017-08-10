@@ -7,6 +7,14 @@
     - name: Install Nginx
       apt: name=nginx state=present update_cache=yes
 
+# Install pip
+- hosts: riot.im_server
+  become: yes
+  tags: certs
+  tasks:
+    - name: Install Pip
+      apt: name=python-pip state=present
+
 # Install setuptools for letsencrypt
 - hosts: riot.im_server
   become: yes
@@ -15,6 +23,7 @@
     - name: Install Setuptools
       pip:
         state: latest
+        executable: /usr/bin/pip
         name: "setuptools"
         extra_args: --process-dependency-links
 
