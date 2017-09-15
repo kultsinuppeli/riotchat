@@ -17,7 +17,7 @@ It's recommended to use different domains for these.
 
 Install the requirements: `ansible-galaxy install -r requirements.yml`
 
-Finally, run the site.yml playbook: `ansible-galaxy -i inventory site.yml` (or `ansible-playbook -i inventory site.yml --ask-sudo-pass` if you are using sudo to elevate your user's privileges on the target server)
+Finally, run the site.yml playbook: `ansible-playbook -i inventory site.yml` (or `ansible-playbook -i inventory site.yml --ask-sudo-pass` if you are using sudo to elevate your user's privileges on the target server)
 
 ## User registration
 
